@@ -6,6 +6,7 @@
     xmlns:customentries="clr-namespace:CustomEntries"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="this"
     mc:Ignorable="d">
     <ContentView.Content>
         <Grid RowSpacing="-7">
@@ -34,15 +35,15 @@
                 CornerRadius="0.5"
                 HeightRequest="1"
                 HorizontalOptions="FillAndExpand"
-                VerticalOptions="Start"
                 Color="{Binding DefaultBorderColor, Source={x:Reference this}}" />
             <BoxView
                 x:Name="HiddenBottomBorder"
                 Grid.Row="1"
+                Margin="0"
                 CornerRadius="0.5"
                 HeightRequest="1"
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="Start"
+                HorizontalOptions="Center"
+                WidthRequest="0"
                 Color="{Binding ActiveBorderColor, Source={x:Reference this}}" />
         </Grid>
     </ContentView.Content>

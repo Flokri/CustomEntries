@@ -9,7 +9,6 @@ using Xamarin.Forms.Xaml;
 
 namespace CustomEntries
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FloatingLabelEntry : ContentView
     {
         #region instances
@@ -23,9 +22,9 @@ namespace CustomEntries
         public readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(FloatingLabelEntry), string.Empty);
         public readonly BindableProperty PlaceholderProperty = BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(FloatingLabelEntry), string.Empty);
         public readonly BindableProperty DefaultTextColorProperty = BindableProperty.Create(nameof(DefaultTextColor), typeof(Color), typeof(FloatingLabelEntry), Color.Gray);
-        public readonly BindableProperty ActiveTextColorProperty = BindableProperty.Create(nameof(ActiveTextColor), typeof(string), typeof(FloatingLabelEntry), Color.Gray);
-        public readonly BindableProperty DefaultBorderColorProperty = BindableProperty.Create(nameof(DefaultBorderColor), typeof(string), typeof(FloatingLabelEntry), Color.Gray);
-        public readonly BindableProperty ActiveBorderColorProperty = BindableProperty.Create(nameof(ActiveBorderColor), typeof(string), typeof(FloatingLabelEntry), Color.Gray);
+        public readonly BindableProperty ActiveTextColorProperty = BindableProperty.Create(nameof(ActiveTextColor), typeof(Color), typeof(FloatingLabelEntry), Color.Gray);
+        public readonly BindableProperty DefaultBorderColorProperty = BindableProperty.Create(nameof(DefaultBorderColor), typeof(Color), typeof(FloatingLabelEntry), Color.Gray);
+        public readonly BindableProperty ActiveBorderColorProperty = BindableProperty.Create(nameof(ActiveBorderColor), typeof(Color), typeof(FloatingLabelEntry), Color.Gray);
         public readonly BindableProperty AnimatedProperty = BindableProperty.Create(nameof(Animated), typeof(bool), typeof(FloatingLabelEntry), true);
 
         #endregion
@@ -77,8 +76,8 @@ namespace CustomEntries
                 await Task.WhenAll(
                     PlaceholderLabel.TranslateTo(0, BorderlessEntry.Y - PlaceholderLabel.Height, 100),
                     PlaceholderLabel.SizeTo(PlaceholderLabel.FontSize, TITLE_FONT_SIZE, (t) => PlaceholderLabel.FontSize = t, 100, Easing.BounceIn),
-                    PlaceholderLabel.ColorTo(DefaultTextColor, ActiveTextColor, (c)=>PlaceholderLabel.TextColor = c,100),
-                    HiddenBottomBorder.LayoutTo(new Rectangle(BottomBorder.X, BottomBorder.Y, BottomBorder.Width, BottomBorder.Height), 100));
+                    HiddenBottomBorder.LayoutTo(new Rectangle(BottomBorder.X, BottomBorder.Y, BottomBorder.Width, BottomBorder.Height), 200),
+                    PlaceholderLabel.ColorTo(DefaultTextColor, ActiveTextColor, (c) => PlaceholderLabel.TextColor = c, 100));
             }
         }
 
@@ -89,8 +88,8 @@ namespace CustomEntries
                 await Task.WhenAll(
                     PlaceholderLabel.TranslateTo(10, 0, 100),
                     PlaceholderLabel.SizeTo(PlaceholderLabel.FontSize, PLACEHOLDER_FONT_SIZE, (t) => PlaceholderLabel.FontSize = t, 100, Easing.BounceIn),
-                    PlaceholderLabel.ColorTo(ActiveTextColor, DefaultTextColor, (c) => PlaceholderLabel.TextColor = c, 100),
-                    HiddenBottomBorder.LayoutTo(new Rectangle(BottomBorder.X, BottomBorder.Y, 0, BottomBorder.Height), 100));
+                    HiddenBottomBorder.LayoutTo(new Rectangle(BottomBorder.X, BottomBorder.Y, 0, BottomBorder.Height), 200),
+                    PlaceholderLabel.ColorTo(ActiveTextColor, DefaultTextColor, (c) => PlaceholderLabel.TextColor = c, 100));
             }
         }
         #endregion

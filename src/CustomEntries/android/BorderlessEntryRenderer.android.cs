@@ -14,7 +14,7 @@ namespace CustomEntries
         {
             base.OnElementChanged(e);
 
-            if (e.OldElement == null && Control != null)
+            if (e.OldElement == null)
                 Control.Background = null;
         }
     }

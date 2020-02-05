@@ -13,8 +13,37 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="1" />
             </Grid.RowDefinitions>
-            <customentries:BorderlessEntry />
-            <Label Text="{Binding Placeholder, Source={x:Reference this}}" TextColor="{Binding ActiveTextColor, Source={x:Reference this}}" />
+            <customentries:BorderlessEntry
+                x:Name="BorderlessEntry"
+                Completed="HandleCompleted"
+                Focused="HandleFocused"
+                Unfocused="HandleUnfocused" />
+            <Label
+                x:Name="PlaceholderLabel"
+                Text="{Binding Placeholder, Source={x:Reference this}}"
+                TextColor="{Binding DefaultTextColor, Source={x:Reference this}}"
+                VerticalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="HandleTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <BoxView
+                x:Name="BottomBorder"
+                Grid.Row="1"
+                CornerRadius="0.5"
+                HeightRequest="1"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Start"
+                Color="{Binding DefaultBorderColor, Source={x:Reference this}}" />
+            <BoxView
+                x:Name="HiddenBottomBorder"
+                Grid.Row="1"
+                CornerRadius="0.5"
+                HeightRequest="1"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Start"
+                Color="{Binding ActiveBorderColor, Source={x:Reference this}}" />
         </Grid>
     </ContentView.Content>
 </ContentView>

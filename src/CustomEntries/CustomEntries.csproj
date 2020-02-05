@@ -1,0 +1,118 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.41">
+
+  <PropertyGroup>
+    <TargetFrameworks>xamarin.ios10;monoandroid90;netstandard2.0</TargetFrameworks>
+
+    <!-- other frameworks you can use-->
+    <!--xamarin.mac20;xamarin.tvos10;xamarin.watchos10;monoandroid10.0;tizen40;netcoreapp2.1;netcoreapp3.1;net461-->
+
+    <!-- Set project metadata -->
+    <Company>flokri</Company>
+    <Copyright>Copyright © flokri</Copyright>
+    <RepositoryUrl>https://github.com/Flokri/CustomEntries</RepositoryUrl>
+    <Authors>Florian Kriegl</Authors>
+    <Owners>Florian Kriegl</Owners>
+    <PackageReleaseNotes />
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Product>CustomEntries (Xamarin.Forms)</Product>
+    <NeutralLanguage>en</NeutralLanguage>
+
+    <Platform>AnyCPU</Platform>
+    <DebugType>portable</DebugType>
+    <PackageId>CustomEntries</PackageId>
+    <AssemblyName>CustomEntries</AssemblyName>
+    <RootNamespace>CustomEntries</RootNamespace>
+
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <DebugType>portable</DebugType>
+
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+
+  <!-- If config is debug create debug symbols -->
+  <PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <!-- If config is release create a package -->
+  <PropertyGroup Condition=" '$(Configuration)'=='Release' ">
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <!-- sourcelink: Include PDB in the built .nupkg -->
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+  </PropertyGroup>
+
+  <!-- Create the item groups for the different platforms -->
+  <ItemGroup>
+    <!-- Include a folder for each platform -->
+    <Folder Include="standard\" />
+    
+    <Compile Include="shared\**\*.cs" />
+
+    <None Include="readme.txt" pack="true" PackagePath="." />
+    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
+    <Compile Include="standard\**\*.standard.cs" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('xamarin.ios')) ">
+    <Compile Include="ios\**\*.ios.cs" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('monoandroid')) ">
+    <Compile Include="android\**\*.android.cs" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('uwp')) ">
+    <Compile Include="uap\**\*.uwp.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="shared\views\FloatingLabelEntry.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="shared\views\FlatingLabelEntry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+
+  <!-- The item groups for the other framworks-->
+  <!--
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.TVOS')) ">
+    <Compile Include="tv\**\*.tv.cs" />
+  </ItemGroup>-->
+
+  <!--
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.WatchOS')) ">
+    <Compile Include="watch\**\*.watch.cs" />
+  </ItemGroup>
+  -->
+
+  <!--
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.Mac')) ">
+    <Compile Include="mac\**\*.mac.cs" />
+  </ItemGroup>
+  -->
+
+  <!--
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('netcoreapp')) ">
+    <Compile Include="core\**\*.core.cs" />
+  </ItemGroup>
+  -->
+
+  <!--
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Tizen')) ">
+    <Compile Include="tizen\**\*.tizen.cs" />
+    <PackageReference Include="Tizen.NET" Version="4.0.0" />
+  </ItemGroup>
+  -->
+  
+</Project>

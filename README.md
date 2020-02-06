@@ -6,5 +6,5 @@ Included entries:
   - borderless entry
   - floating label entry
   
-# Use the NuGet
+## Use the NuGet
 To use the Nuget include it in every project.

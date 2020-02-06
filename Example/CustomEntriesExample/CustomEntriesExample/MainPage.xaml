@@ -9,15 +9,28 @@
     mc:Ignorable="d">
 
     <Grid>
-        <customentries:FloatingLabelEntry
-            ActiveBorderColor="DarkGoldenrod"
-            ActiveTextColor="DarkGoldenrod"
-            DefaultBorderColor="Blue"
-            DefaultTextColor="Red"
-            HorizontalOptions="CenterAndExpand"
-            Placeholder="Text"
-            VerticalOptions="CenterAndExpand"
-            WidthRequest="150" />
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <customentries:FloatingLabelEntry
+                ActiveBorderColor="LightCoral"
+                ActiveTextColor="LightCoral"
+                DefaultBorderColor="LightGray"
+                DefaultTextColor="LightGray"
+                HorizontalOptions="CenterAndExpand"
+                Placeholder="Username"
+                VerticalOptions="CenterAndExpand"
+                WidthRequest="150" />
+
+            <customentries:FloatingLabelEntry
+                ActiveBorderColor="LightGreen"
+                ActiveTextColor="LightGreen"
+                DefaultBorderColor="LightGray"
+                DefaultTextColor="LightGray"
+                HorizontalOptions="CenterAndExpand"
+                IsPassword="True"
+                Placeholder="Password"
+                VerticalOptions="CenterAndExpand"
+                WidthRequest="150" />
+        </StackLayout>
     </Grid>
 
 </ContentPage>

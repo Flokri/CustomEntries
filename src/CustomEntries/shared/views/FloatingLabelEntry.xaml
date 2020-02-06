@@ -9,7 +9,7 @@
     x:Name="this"
     mc:Ignorable="d">
     <ContentView.Content>
-        <Grid RowSpacing="-7">
+        <Grid x:Name="Grid" RowSpacing="-7">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="1" />
@@ -18,6 +18,9 @@
                 x:Name="BorderlessEntry"
                 Completed="HandleCompleted"
                 Focused="HandleFocused"
+                IsPassword="{Binding IsPassword, Source={x:Reference this}}"
+                Keyboard="{Binding Keyboard, Source={x:Reference this}}"
+                Text="{Binding Text, Source={x:Reference this}}"
                 Unfocused="HandleUnfocused" />
             <Label
                 x:Name="PlaceholderLabel"

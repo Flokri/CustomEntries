@@ -29,6 +29,12 @@
     <DebugType>portable</DebugType>
 
     <Version>1.0.0</Version>
+
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+    <Description>This NuGet contains custom entries for Xamarin.Forms.</Description>
+
+    <PackageProjectUrl>https://github.com/Flokri/CustomEntries</PackageProjectUrl>
   </PropertyGroup>
 
   <!-- If config is debug create debug symbols -->
@@ -70,18 +76,6 @@
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('uwp')) ">
     <Compile Include="uap\**\*.uwp.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="shared\views\FloatingLabelEntry.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="shared\views\FlatingLabelEntry.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
   </ItemGroup>
 
   <!-- The item groups for the other framworks-->

@@ -10,7 +10,7 @@
 
     <Grid>
         <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-            <customentries:FloatingLabelEntry
+            <customentries:BorerlessFloatingLabelEntry
                 ActiveBorderColor="LightCoral"
                 ActiveTextColor="LightCoral"
                 DefaultBorderColor="LightGray"
@@ -20,7 +20,7 @@
                 VerticalOptions="CenterAndExpand"
                 WidthRequest="150" />
 
-            <customentries:FloatingLabelEntry
+            <customentries:BorerlessFloatingLabelEntry
                 ActiveBorderColor="LightGreen"
                 ActiveTextColor="LightGreen"
                 DefaultBorderColor="LightGray"
@@ -30,6 +30,20 @@
                 Placeholder="Password"
                 VerticalOptions="CenterAndExpand"
                 WidthRequest="150" />
+            <customentries:ConfirmFloatingLabelEntry
+                Margin="30,0"
+                ActiveTextColor="#5a97d6"
+                ButtonBackgroundColor="#5c94cd"
+                CornerRadius="5"
+                DefaultTextColor="White"
+                Keyboard="Email"
+                Placeholder="Email Address"
+                TextColor="White"
+                ViewBackgroundColor="#044f9e">
+                <customentries:ConfirmFloatingLabelEntry.Behaviors>
+                    <customentries:EmailValidationBehavior />
+                </customentries:ConfirmFloatingLabelEntry.Behaviors>
+            </customentries:ConfirmFloatingLabelEntry>
         </StackLayout>
     </Grid>
 

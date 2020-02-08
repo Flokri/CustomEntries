@@ -9,7 +9,7 @@ using Xamarin.Forms.Xaml;
 
 namespace CustomEntries
 {
-    public partial class FloatingLabelEntry : ContentView
+    public partial class BorerlessFloatingLabelEntry : ContentView
     {
         #region instances
         const int TITLE_FONT_SIZE = 14;
@@ -19,20 +19,20 @@ namespace CustomEntries
         #endregion 
 
         #region BindablePropeties
-        public readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(FloatingLabelEntry), string.Empty);
-        public readonly BindableProperty PlaceholderProperty = BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(FloatingLabelEntry), string.Empty);
-        public readonly BindableProperty DefaultTextColorProperty = BindableProperty.Create(nameof(DefaultTextColor), typeof(Color), typeof(FloatingLabelEntry), Color.Gray);
-        public readonly BindableProperty ActiveTextColorProperty = BindableProperty.Create(nameof(ActiveTextColor), typeof(Color), typeof(FloatingLabelEntry), Color.Gray);
-        public readonly BindableProperty DefaultBorderColorProperty = BindableProperty.Create(nameof(DefaultBorderColor), typeof(Color), typeof(FloatingLabelEntry), Color.Gray);
-        public readonly BindableProperty ActiveBorderColorProperty = BindableProperty.Create(nameof(ActiveBorderColor), typeof(Color), typeof(FloatingLabelEntry), Color.Gray);
-        public readonly BindableProperty AnimatedProperty = BindableProperty.Create(nameof(Animated), typeof(bool), typeof(FloatingLabelEntry), true);
-        public readonly BindableProperty KeyboardProperty = BindableProperty.Create(nameof(Keyboard), typeof(Keyboard), typeof(FloatingLabelEntry), Keyboard.Default);
-        public readonly BindableProperty IsPasswordProperty = BindableProperty.Create(nameof(IsPassword), typeof(bool), typeof(FloatingLabelEntry), false);
+        public readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(BorerlessFloatingLabelEntry), string.Empty);
+        public readonly BindableProperty PlaceholderProperty = BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(BorerlessFloatingLabelEntry), string.Empty);
+        public readonly BindableProperty DefaultTextColorProperty = BindableProperty.Create(nameof(DefaultTextColor), typeof(Color), typeof(BorerlessFloatingLabelEntry), Color.Gray);
+        public readonly BindableProperty ActiveTextColorProperty = BindableProperty.Create(nameof(ActiveTextColor), typeof(Color), typeof(BorerlessFloatingLabelEntry), Color.Gray);
+        public readonly BindableProperty DefaultBorderColorProperty = BindableProperty.Create(nameof(DefaultBorderColor), typeof(Color), typeof(BorerlessFloatingLabelEntry), Color.Gray);
+        public readonly BindableProperty ActiveBorderColorProperty = BindableProperty.Create(nameof(ActiveBorderColor), typeof(Color), typeof(BorerlessFloatingLabelEntry), Color.Gray);
+        public readonly BindableProperty AnimatedProperty = BindableProperty.Create(nameof(Animated), typeof(bool), typeof(BorerlessFloatingLabelEntry), true);
+        public readonly BindableProperty KeyboardProperty = BindableProperty.Create(nameof(Keyboard), typeof(Keyboard), typeof(BorerlessFloatingLabelEntry), Keyboard.Default);
+        public readonly BindableProperty IsPasswordProperty = BindableProperty.Create(nameof(IsPassword), typeof(bool), typeof(BorerlessFloatingLabelEntry), false);
 
         #endregion
 
         #region constructor
-        public FloatingLabelEntry()
+        public BorerlessFloatingLabelEntry()
         {
             InitializeComponent();
 

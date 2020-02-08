@@ -47,7 +47,6 @@ namespace CustomEntries
             easing = easing ?? Easing.Linear;
             var taskCompletionSource = new TaskCompletionSource<bool>();
 
-
             Thickness transform(double t) =>
             new Thickness(startMargin.Left + t * (endMargin.Left - startMargin.Left),
             startMargin.Top + t * (endMargin.Top - startMargin.Top),
@@ -55,6 +54,17 @@ namespace CustomEntries
             startMargin.Bottom + t * (endMargin.Bottom - startMargin.Bottom));
 
             return StartAnimation<Thickness>(self, "MarginTo", transform, callback, length, easing);
+        }
+
+        public static Task<bool> OpacityTo(this VisualElement self, double startOpacity, double endOpacity, Action<double> callback, uint length, Easing easing = null)
+        {
+            easing = easing ?? Easing.Linear;
+            var taskCompletionSource = new TaskCompletionSource<bool>();
+
+            double transform(double t) =>
+            (startOpacity + t * (endOpacity - startOpacity));
+
+            return StartAnimation<double>(self, "OpacityTo", transform, callback, length, easing);
         }
     }
 }

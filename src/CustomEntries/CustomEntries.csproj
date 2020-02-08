@@ -54,12 +54,14 @@
   <!-- Create the item groups for the different platforms -->
   <ItemGroup>
     <!-- Include a folder for each platform -->
-    <Folder Include="standard\" />
     
     <Compile Include="shared\**\*.cs" />
+   
+    <EmbeddedResource Include="shared\resources\refresh_light.png" />
 
     <None Include="readme.txt" pack="true" PackagePath="." />
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.187-pre2" />
+    <PackageReference Include="Xamarin.Forms.DebugRainbows" Version="1.1.4" />
   </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
@@ -72,6 +74,7 @@
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('monoandroid')) ">
     <Compile Include="android\**\*.android.cs" />
+    <EmbeddedResource Include="shared\resources\refresh_light.png" />
   </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('uwp')) ">

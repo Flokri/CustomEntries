@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="CustomEntries.ConfirmFloatingLabelEntry"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customentries="clr-namespace:CustomEntries"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:rainbows="clr-namespace:Xamarin.Forms.DebugRainbows;assembly=Xamarin.Forms.DebugRainbows"
+    x:Name="this"
+    rainbows:DebugRainbow.ShowColors="false"
+    mc:Ignorable="d">
+    <ContentView.Content>
+        <Grid HorizontalOptions="FillAndExpand">
+            <Frame
+                x:Name="Frame"
+                Padding="0"
+                BackgroundColor="{Binding ViewBackgroundColor, Source={x:Reference this}}"
+                CornerRadius="{Binding CornerRadius, Source={x:Reference this}}">
+                <Grid HorizontalOptions="FillAndExpand">
+                    <customentries:BorderlessEntry
+                        x:Name="BorderlessEntry"
+                        Margin="10,0,0,-4"
+                        Completed="HandleCompleted"
+                        Focused="HandleFocused"
+                        IsPassword="{Binding IsPassword, Source={x:Reference this}}"
+                        Keyboard="{Binding Keyboard, Source={x:Reference this}}"
+                        Text="{Binding Text, Source={x:Reference this}}"
+                        TextColor="{Binding TextColor, Source={x:Reference this}}"
+                        Unfocused="HandleUnfocused"
+                        VerticalOptions="End"
+                        VerticalTextAlignment="End" />
+                    <Label
+                        x:Name="PlaceholderLabel"
+                        Margin="12,0"
+                        Text="{Binding Placeholder, Source={x:Reference this}}"
+                        TextColor="{Binding DefaultTextColor, Source={x:Reference this}}"
+                        VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="HandleTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Button
+                        x:Name="Confirm"
+                        Margin="0,0,-1,0"
+                        BackgroundColor="{Binding ButtonBackgroundColor, Source={x:Reference this}}"
+                        Clicked="HandleClicked"
+                        CornerRadius="{Binding CornerRadius, Source={x:Reference this}}"
+                        HorizontalOptions="End"
+                        ImageSource=""
+                        Text="OK"
+                        TextColor="{Binding DefaultTextColor, Source={x:Reference this}}"
+                        VerticalOptions="FillAndExpand"
+                        WidthRequest="0" />
+                </Grid>
+            </Frame>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

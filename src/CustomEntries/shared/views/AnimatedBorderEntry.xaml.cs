@@ -97,8 +97,8 @@ namespace CustomEntries
                 phase: -0);
 
             var anim = new StrokeDashAnimation(
-                from: _strokeDashEnd,
-                to: _strokeDashStart,
+                from: _strokeDashStart,
+                to: _strokeDashEnd,
                 duration: ANIMATION_DURATION);
 
             await anim.Start((strokeDashToDraw) => RequestDraw(SkCanvasView, strokeDashToDraw));

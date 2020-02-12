@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<customentries:FloatingLabelBase
+    x:Class="CustomEntries.AnimatedBorderEntry"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customentries="clr-namespace:CustomEntries"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:forms="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="this"
+    mc:Ignorable="d">
+    <ContentView.Content>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <customentries:FloatingLabelEntry
+                x:Name="borderlessEntry"
+                Margin="30,10"
+                Animated="true"
+                DefaultTextColor="{Binding DefaultTextColor, Source={x:Reference this}}"
+                IsPassword="{Binding IsPassword, Source={x:Reference this}}"
+                Keyboard="{Binding Keyboard, Source={x:Reference this}}"
+                Placeholder="{Binding Placeholder, Source={x:Reference this}}"
+                TitleColor="{Binding TitleColor, Source={x:Reference this}}" />
+            <forms:SKCanvasView x:Name="SkCanvasView" PaintSurface="SkCanvasViewRequiredPainting" />
+        </Grid>
+    </ContentView.Content>
+</customentries:FloatingLabelBase>

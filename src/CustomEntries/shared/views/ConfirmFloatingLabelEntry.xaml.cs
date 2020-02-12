@@ -112,7 +112,7 @@ namespace CustomEntries
         }
 
         async Task TitleToPlaceholder()
-        {
+        { 
             if (Animated)
             {
                 await Task.WhenAll(

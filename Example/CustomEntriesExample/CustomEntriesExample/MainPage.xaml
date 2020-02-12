@@ -10,6 +10,19 @@
 
     <Grid>
         <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <customentries:FloatingLabelEntry
+                Margin="30,0"
+                Placeholder="Floating Label"
+                TitleColor="CornflowerBlue"
+                WidthRequest="300" />
+            <customentries:AnimatedBorderEntry
+                Margin="30,0"
+                EndColor="Purple"
+                GradientColor="True"
+                Placeholder="Animated"
+                StartColor="Violet"
+                TitleColor="Gray"
+                WidthRequest="300" />
             <customentries:BorerlessFloatingLabelEntry
                 ActiveBorderColor="LightCoral"
                 ActiveTextColor="LightCoral"
@@ -31,7 +44,7 @@
                 VerticalOptions="CenterAndExpand"
                 WidthRequest="150" />
             <customentries:ConfirmFloatingLabelEntry
-                Margin="30,0"
+                Margin="30,5"
                 ActiveTextColor="#5a97d6"
                 ButtonBackgroundColor="#5c94cd"
                 CornerRadius="5"
@@ -44,6 +57,7 @@
                     <customentries:EmailValidationBehavior />
                 </customentries:ConfirmFloatingLabelEntry.Behaviors>
             </customentries:ConfirmFloatingLabelEntry>
+
         </StackLayout>
     </Grid>
 

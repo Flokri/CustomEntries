@@ -6,9 +6,7 @@
     xmlns:customentries="clr-namespace:CustomEntries"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:rainbows="clr-namespace:Xamarin.Forms.DebugRainbows;assembly=Xamarin.Forms.DebugRainbows"
     x:Name="this"
-    rainbows:DebugRainbow.ShowColors="false"
     mc:Ignorable="d">
     <ContentView.Content>
         <Grid HorizontalOptions="FillAndExpand">

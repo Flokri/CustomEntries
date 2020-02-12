@@ -54,12 +54,13 @@
   <!-- Create the item groups for the different platforms -->
   <ItemGroup>
     <!-- Include a folder for each platform -->
-    
+
     <Compile Include="shared\**\*.cs" />
-   
-    <EmbeddedResource Include="shared\resources\refresh_light.png" />
 
     <None Include="readme.txt" pack="true" PackagePath="." />
+
+    <PackageReference Include="SkiaSharp" Version="1.68.2-preview.29" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.2-preview.29" />
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.187-pre2" />
     <PackageReference Include="Xamarin.Forms.DebugRainbows" Version="1.1.4" />
   </ItemGroup>
@@ -111,5 +112,5 @@
     <PackageReference Include="Tizen.NET" Version="4.0.0" />
   </ItemGroup>
   -->
-  
+
 </Project>

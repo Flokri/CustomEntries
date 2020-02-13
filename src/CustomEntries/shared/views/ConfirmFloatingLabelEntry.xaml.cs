@@ -20,17 +20,17 @@ namespace CustomEntries
         #endregion
 
         #region bindable properties
-        public readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(BorerlessFloatingLabelEntry), string.Empty);
-        public readonly BindableProperty AnimatedProperty = BindableProperty.Create(nameof(Animated), typeof(bool), typeof(BorerlessFloatingLabelEntry), true);
-        public readonly BindableProperty CornerRadiusProperty = BindableProperty.Create(nameof(CornerRadius), typeof(int), typeof(BorerlessFloatingLabelEntry), 0);
-        public readonly BindableProperty PlaceholderProperty = BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(BorerlessFloatingLabelEntry), string.Empty);
-        public readonly BindableProperty DefaultTextColorProperty = BindableProperty.Create(nameof(DefaultTextColor), typeof(Color), typeof(BorerlessFloatingLabelEntry), Color.Gray);
-        public readonly BindableProperty ActiveTextColorProperty = BindableProperty.Create(nameof(ActiveTextColor), typeof(Color), typeof(BorerlessFloatingLabelEntry), Color.Gray);
-        public readonly BindableProperty KeyboardProperty = BindableProperty.Create(nameof(Keyboard), typeof(Keyboard), typeof(BorerlessFloatingLabelEntry), Keyboard.Default);
-        public readonly BindableProperty IsPasswordProperty = BindableProperty.Create(nameof(IsPassword), typeof(bool), typeof(BorerlessFloatingLabelEntry), false);
-        public readonly BindableProperty ViewBackgroundColorProperty = BindableProperty.Create(nameof(ViewBackgroundColor), typeof(Color), typeof(BorerlessFloatingLabelEntry), Color.Gray);
-        public readonly BindableProperty ButtonBackgroundColorProperty = BindableProperty.Create(nameof(ButtonBackgroundColor), typeof(Color), typeof(BorerlessFloatingLabelEntry), Color.LightGray);
-        public readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(BorerlessFloatingLabelEntry), Color.Black);
+        public readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(BorderlessFloatingLabelEntry), string.Empty);
+        public readonly BindableProperty AnimatedProperty = BindableProperty.Create(nameof(Animated), typeof(bool), typeof(BorderlessFloatingLabelEntry), true);
+        public readonly BindableProperty CornerRadiusProperty = BindableProperty.Create(nameof(CornerRadius), typeof(int), typeof(BorderlessFloatingLabelEntry), 0);
+        public readonly BindableProperty PlaceholderProperty = BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(BorderlessFloatingLabelEntry), string.Empty);
+        public readonly BindableProperty DefaultTextColorProperty = BindableProperty.Create(nameof(DefaultTextColor), typeof(Color), typeof(BorderlessFloatingLabelEntry), Color.Gray);
+        public readonly BindableProperty ActiveTextColorProperty = BindableProperty.Create(nameof(ActiveTextColor), typeof(Color), typeof(BorderlessFloatingLabelEntry), Color.Gray);
+        public readonly BindableProperty KeyboardProperty = BindableProperty.Create(nameof(Keyboard), typeof(Keyboard), typeof(BorderlessFloatingLabelEntry), Keyboard.Default);
+        public readonly BindableProperty IsPasswordProperty = BindableProperty.Create(nameof(IsPassword), typeof(bool), typeof(BorderlessFloatingLabelEntry), false);
+        public readonly BindableProperty ViewBackgroundColorProperty = BindableProperty.Create(nameof(ViewBackgroundColor), typeof(Color), typeof(BorderlessFloatingLabelEntry), Color.Gray);
+        public readonly BindableProperty ButtonBackgroundColorProperty = BindableProperty.Create(nameof(ButtonBackgroundColor), typeof(Color), typeof(BorderlessFloatingLabelEntry), Color.LightGray);
+        public readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(BorderlessFloatingLabelEntry), Color.Black);
         public static BindableProperty IsValidProperty = BindableProperty.Create(nameof(IsValid), typeof(bool), typeof(ConfirmFloatingLabelEntry), false, propertyChanged: (bindable, oldVal, newVal) =>
         {
             var confirmEntry = (ConfirmFloatingLabelEntry)bindable;

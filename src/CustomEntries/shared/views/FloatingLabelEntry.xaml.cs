@@ -14,9 +14,11 @@ namespace CustomEntries
         public event EventHandler Completed;
 
         public AsyncEvent<EventArgs> BeforeTitleToPlaceholderAsync;
+        public AsyncEvent<EventArgs> TitleToPlaceholderAsync;
         public AsyncEvent<EventArgs> AfterTitleToPlaceholderAsync;
 
         public AsyncEvent<EventArgs> BeforePlaceholderToTitleAsync;
+        public AsyncEvent<EventArgs> PlaceholderToTitleAsync;
         public AsyncEvent<EventArgs> AfterPlaceholderToTitleAsync;
         #endregion
 
@@ -98,7 +100,8 @@ namespace CustomEntries
                         startColor: DefaultTextColor,
                         endColor: TitleColor,
                         callback: (c) => PlaceholderLabel.TextColor = c,
-                        length: 100));
+                        length: 100),
+                    (PlaceholderToTitleAsync?.InvokeAsync(this, new EventArgs())) ?? Task.CompletedTask);
             }
             else
             {
@@ -131,7 +134,8 @@ namespace CustomEntries
                         startColor: TitleColor,
                         endColor: DefaultTextColor,
                         callback: (c) => PlaceholderLabel.TextColor = c,
-                        length: 100));
+                        length: 100),
+                    (TitleToPlaceholderAsync?.InvokeAsync(this, new EventArgs())) ?? Task.CompletedTask);
             }
             else
             {

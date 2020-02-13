@@ -10,6 +10,7 @@
 
     <Grid>
         <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <customentries:ValidationWaveEntry Margin="30,10" WidthRequest="300" />
             <customentries:FloatingLabelEntry
                 Margin="30,0"
                 Placeholder="Floating Label"
@@ -23,24 +24,24 @@
                 StartColor="Violet"
                 TitleColor="Gray"
                 WidthRequest="300" />
-            <customentries:BorerlessFloatingLabelEntry
+            <customentries:BorderlessFloatingLabelEntry
                 ActiveBorderColor="LightCoral"
-                ActiveTextColor="LightCoral"
                 DefaultBorderColor="LightGray"
                 DefaultTextColor="LightGray"
                 HorizontalOptions="CenterAndExpand"
                 Placeholder="Username"
+                TitleColor="LightCoral"
                 VerticalOptions="CenterAndExpand"
                 WidthRequest="150" />
 
-            <customentries:BorerlessFloatingLabelEntry
+            <customentries:BorderlessFloatingLabelEntry
                 ActiveBorderColor="LightGreen"
-                ActiveTextColor="LightGreen"
                 DefaultBorderColor="LightGray"
                 DefaultTextColor="LightGray"
                 HorizontalOptions="CenterAndExpand"
                 IsPassword="True"
                 Placeholder="Password"
+                TitleColor="LightGreen"
                 VerticalOptions="CenterAndExpand"
                 WidthRequest="150" />
             <customentries:ConfirmFloatingLabelEntry

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentView
-    x:Class="CustomEntries.BorerlessFloatingLabelEntry"
+<customentries:FloatingLabelBase
+    x:Class="CustomEntries.BorderlessFloatingLabelEntry"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:customentries="clr-namespace:CustomEntries"
@@ -9,29 +9,26 @@
     x:Name="this"
     mc:Ignorable="d">
     <ContentView.Content>
-        <Grid x:Name="Grid" RowSpacing="-7">
+        <Grid x:Name="Grid" Margin="0,6,0,0">
+            <Grid.RowSpacing>
+                <OnPlatform x:TypeArguments="x:Double">
+                    <On Platform="iOS" Value="0" />
+                    <On Platform="Android" Value="-5" />
+                </OnPlatform>
+            </Grid.RowSpacing>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="1" />
             </Grid.RowDefinitions>
-            <customentries:BorderlessEntry
-                x:Name="BorderlessEntry"
-                Completed="HandleCompleted"
-                Focused="HandleFocused"
+            <customentries:FloatingLabelEntry
+                x:Name="floatingLabelEntry"
+                Animated="true"
+                DefaultTextColor="{Binding DefaultTextColor, Source={x:Reference this}}"
                 IsPassword="{Binding IsPassword, Source={x:Reference this}}"
                 Keyboard="{Binding Keyboard, Source={x:Reference this}}"
+                Placeholder="{Binding Placeholder, Source={x:Reference this}}"
                 Text="{Binding Text, Source={x:Reference this}}"
-                Unfocused="HandleUnfocused" />
-            <Label
-                x:Name="PlaceholderLabel"
-                Text="{Binding Placeholder, Source={x:Reference this}}"
-                TextColor="{Binding DefaultTextColor, Source={x:Reference this}}"
-                VerticalOptions="Center">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="HandleTapped" />
-                </Label.GestureRecognizers>
-            </Label>
-
+                TitleColor="{Binding TitleColor, Source={x:Reference this}}" />
             <BoxView
                 x:Name="BottomBorder"
                 Grid.Row="1"
@@ -50,4 +47,4 @@
                 Color="{Binding ActiveBorderColor, Source={x:Reference this}}" />
         </Grid>
     </ContentView.Content>
-</ContentView>
+</customentries:FloatingLabelBase>

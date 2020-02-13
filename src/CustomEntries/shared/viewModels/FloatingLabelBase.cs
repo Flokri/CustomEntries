@@ -5,13 +5,13 @@ namespace CustomEntries
     public partial class FloatingLabelBase : ContentView
     {
         #region bindable properties
-        public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(BorerlessFloatingLabelEntry), string.Empty);
-        public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(BorerlessFloatingLabelEntry), string.Empty);
-        public static readonly BindableProperty DefaultTextColorProperty = BindableProperty.Create(nameof(DefaultTextColor), typeof(Color), typeof(BorerlessFloatingLabelEntry), Color.Gray);
-        public static readonly BindableProperty TitleColorProperty = BindableProperty.Create(nameof(TitleColor), typeof(Color), typeof(BorerlessFloatingLabelEntry), Color.Gray);
-        public static readonly BindableProperty AnimatedProperty = BindableProperty.Create(nameof(Animated), typeof(bool), typeof(BorerlessFloatingLabelEntry), true);
-        public static readonly BindableProperty KeyboardProperty = BindableProperty.Create(nameof(Keyboard), typeof(Keyboard), typeof(BorerlessFloatingLabelEntry), Keyboard.Default);
-        public static readonly BindableProperty IsPasswordProperty = BindableProperty.Create(nameof(IsPassword), typeof(bool), typeof(BorerlessFloatingLabelEntry), false);
+        public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(BorderlessFloatingLabelEntry), string.Empty);
+        public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(BorderlessFloatingLabelEntry), string.Empty);
+        public static readonly BindableProperty DefaultTextColorProperty = BindableProperty.Create(nameof(DefaultTextColor), typeof(Color), typeof(BorderlessFloatingLabelEntry), Color.Gray);
+        public static readonly BindableProperty TitleColorProperty = BindableProperty.Create(nameof(TitleColor), typeof(Color), typeof(BorderlessFloatingLabelEntry), Color.Gray);
+        public static readonly BindableProperty AnimatedProperty = BindableProperty.Create(nameof(Animated), typeof(bool), typeof(BorderlessFloatingLabelEntry), true);
+        public static readonly BindableProperty KeyboardProperty = BindableProperty.Create(nameof(Keyboard), typeof(Keyboard), typeof(BorderlessFloatingLabelEntry), Keyboard.Default);
+        public static readonly BindableProperty IsPasswordProperty = BindableProperty.Create(nameof(IsPassword), typeof(bool), typeof(BorderlessFloatingLabelEntry), false);
         #endregion
 
         #region properties

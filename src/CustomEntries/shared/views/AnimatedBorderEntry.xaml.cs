@@ -36,6 +36,7 @@ namespace CustomEntries
             _paint = new SKPaint
             {
                 Style = SKPaintStyle.Stroke,
+                IsAntialias = true,
                 StrokeWidth = 5
             };
         }
@@ -113,9 +114,14 @@ namespace CustomEntries
             var strokeWidth = (float)SkCanvasView.FromPixels(new Point(0, paint.StrokeWidth)).Y;
             float arcHeight = (float)viewBounds.Height + (float)strokeWidth;
 
+            var textSize = SkCanvasView.FromPixels(new Size(
+                width: CalculateBounds.GetTextWidth(borderlessEntry.Placeholder, borderlessEntry.TitleFontSize),
+                height: CalculateBounds.GetTextHeight(borderlessEntry.Placeholder, borderlessEntry.TitleFontSize)));
+
+
             // move the point next to the placeholder label
             path.MoveTo(
-                x: (float)viewBounds.X + (float)CalculateBounds.GetTextWidth(borderlessEntry.Placeholder, borderlessEntry.TitleFontSize) + 10,
+                x: (float)viewBounds.X + (float)textSize.Width + 10,
                 y: (float)viewBounds.Y);
 
             float xCurrent = path.LastPoint.X;

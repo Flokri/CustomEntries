@@ -12,8 +12,8 @@ namespace CustomEntries
             Rect bounds = new Rect();
             TextView textView = new TextView(Android.App.Application.Context) { TextSize = fontSize };
             textView.Paint.GetTextBounds(text, 0, text.Length, bounds);
-            return bounds.Width();
-            //return length / Resources.System.DisplayMetrics.ScaledDensity;
+            var length = bounds.Width();
+            return length / Resources.System.DisplayMetrics.ScaledDensity;
         }
 
         public static double TextHeightNative(string text, float fontSize)

@@ -20,6 +20,8 @@ namespace CustomEntries
         public AsyncEvent<EventArgs> BeforePlaceholderToTitleAsync;
         public AsyncEvent<EventArgs> PlaceholderToTitleAsync;
         public AsyncEvent<EventArgs> AfterPlaceholderToTitleAsync;
+
+        public AsyncEvent<EventArgs> TextChangedHandlerAsync;
         #endregion
 
         public FloatingLabelEntry()
@@ -28,6 +30,14 @@ namespace CustomEntries
 
             PlaceholderLabel.TranslationX = 10;
             PlaceholderLabel.FontSize = PLACEHOLDER_FONT_SIZE;
+
+            // fixing the problem with the height changing when user taps the label
+            this.SizeChanged += (sender, e) => HeightRequest = ((FloatingLabelEntry)sender).Height;
+
+            // invoke the eventhandler when text changes
+            BorderlessEntry.TextChanged += async (sender, e) => await (TextChangedHandlerAsync?.InvokeAsync(sender, e) ?? Task.CompletedTask);
+
+            this.IsClippedToBounds = false;
         }
 
         #region event handler
@@ -97,7 +107,7 @@ namespace CustomEntries
                         length: 100,
                         easing: Easing.BounceIn),
                     PlaceholderLabel.ColorTo(
-                        startColor: DefaultTextColor,
+                        startColor: PlaceholderColor,
                         endColor: TitleColor,
                         callback: (c) => PlaceholderLabel.TextColor = c,
                         length: 100),
@@ -132,7 +142,7 @@ namespace CustomEntries
                         easing: Easing.BounceIn),
                     PlaceholderLabel.ColorTo(
                         startColor: TitleColor,
-                        endColor: DefaultTextColor,
+                        endColor: PlaceholderColor,
                         callback: (c) => PlaceholderLabel.TextColor = c,
                         length: 100),
                     (TitleToPlaceholderAsync?.InvokeAsync(this, new EventArgs())) ?? Task.CompletedTask);

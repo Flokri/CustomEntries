@@ -7,9 +7,7 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:forms="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:rainbows="clr-namespace:Xamarin.Forms.DebugRainbows;assembly=Xamarin.Forms.DebugRainbows"
     x:Name="this"
-    rainbows:DebugRainbow.ShowColors="false"
     mc:Ignorable="d">
     <ContentView.Content>
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -21,10 +19,10 @@
                 x:Name="borderlessEntry"
                 Margin="30,10"
                 Animated="true"
-                DefaultTextColor="{Binding DefaultTextColor, Source={x:Reference this}}"
                 IsPassword="{Binding IsPassword, Source={x:Reference this}}"
                 Keyboard="{Binding Keyboard, Source={x:Reference this}}"
                 Placeholder="{Binding Placeholder, Source={x:Reference this}}"
+                TextColor="{Binding DefaultTextColor, Source={x:Reference this}}"
                 TitleColor="{Binding TitleColor, Source={x:Reference this}}" />
         </Grid>
     </ContentView.Content>

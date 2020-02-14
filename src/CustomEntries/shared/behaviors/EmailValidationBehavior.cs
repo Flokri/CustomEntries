@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace CustomEntries
@@ -15,24 +16,26 @@ namespace CustomEntries
 
             _currentView = bindable;
 
-            bindable.TextChanged += OnEntryTextChanged;
+            bindable.TextChangedHandlerAsync += (sender, e) => OnEntryTextChanged(sender, e);
         }
 
         protected override void OnDetachingFrom(ConfirmFloatingLabelEntry bindable)
         {
             base.OnDetachingFrom(bindable);
 
-            bindable.TextChanged -= OnEntryTextChanged;
+            bindable.TextChangedHandlerAsync -= OnEntryTextChanged;
         }
 
-        void OnEntryTextChanged(object sender, TextChangedEventArgs e)
+        Task OnEntryTextChanged(object sender, EventArgs e)
         {
             var entry = (Entry)sender;
 
             if (entry.Text == null)
-                return;
+                return Task.CompletedTask;
 
             _currentView.IsValid = IsValidEmail(entry.Text);
+
+            return Task.CompletedTask;
         }
 
         private bool IsValidEmail(string email)

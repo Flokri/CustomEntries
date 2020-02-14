@@ -75,7 +75,6 @@
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('monoandroid')) ">
     <Compile Include="android\**\*.android.cs" />
-    <EmbeddedResource Include="shared\resources\refresh_light.png" />
   </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('uwp')) ">

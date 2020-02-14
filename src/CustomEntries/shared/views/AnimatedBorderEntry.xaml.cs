@@ -36,8 +36,20 @@ namespace CustomEntries
             {
                 Style = SKPaintStyle.Stroke,
                 IsAntialias = true,
-                StrokeWidth = 5
             };
+
+            // set the stroke width for the different platforms
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    _paint.StrokeWidth = 3;
+                    break;
+                case Device.Android:
+                    _paint.StrokeWidth = 5;
+                    break;
+                default:
+                    break;
+            }
         }
 
         /// <summary>
@@ -120,7 +132,7 @@ namespace CustomEntries
 
             // move the point next to the placeholder label
             path.MoveTo(
-                x: (float)viewBounds.X + (float)textSize.Width + 10,
+                x: (float)viewBounds.X + (float)textSize.Width + 3,
                 y: (float)viewBounds.Y);
 
             float xCurrent = path.LastPoint.X;

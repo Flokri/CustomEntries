@@ -27,9 +27,9 @@
             <customentries:BorderlessFloatingLabelEntry
                 ActiveBorderColor="LightCoral"
                 DefaultBorderColor="LightGray"
-                DefaultTextColor="LightGray"
                 HorizontalOptions="CenterAndExpand"
                 Placeholder="Username"
+                TextColor="Gray"
                 TitleColor="LightCoral"
                 VerticalOptions="CenterAndExpand"
                 WidthRequest="150" />
@@ -37,21 +37,20 @@
             <customentries:BorderlessFloatingLabelEntry
                 ActiveBorderColor="LightGreen"
                 DefaultBorderColor="LightGray"
-                DefaultTextColor="LightGray"
                 HorizontalOptions="CenterAndExpand"
                 IsPassword="True"
                 Placeholder="Password"
+                TextColor="LightGray"
                 TitleColor="LightGreen"
                 VerticalOptions="CenterAndExpand"
                 WidthRequest="150" />
             <customentries:ConfirmFloatingLabelEntry
                 Margin="30,5"
-                ActiveTextColor="#5a97d6"
                 ButtonBackgroundColor="#5c94cd"
                 CornerRadius="5"
-                DefaultTextColor="White"
                 Keyboard="Email"
                 Placeholder="Email Address"
+                PlaceholderColor="#5a97d6"
                 TextColor="White"
                 ViewBackgroundColor="#044f9e">
                 <customentries:ConfirmFloatingLabelEntry.Behaviors>

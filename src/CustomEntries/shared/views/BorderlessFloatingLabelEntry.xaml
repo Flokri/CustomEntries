@@ -32,9 +32,11 @@
             <BoxView
                 x:Name="BottomBorder"
                 Grid.Row="1"
+                Margin="0"
                 CornerRadius="0.5"
                 HeightRequest="1"
                 HorizontalOptions="FillAndExpand"
+                VerticalOptions="Center"
                 Color="{Binding DefaultBorderColor, Source={x:Reference this}}" />
             <BoxView
                 x:Name="HiddenBottomBorder"
@@ -43,6 +45,7 @@
                 CornerRadius="0.5"
                 HeightRequest="1"
                 HorizontalOptions="Center"
+                VerticalOptions="Center"
                 WidthRequest="0"
                 Color="{Binding ActiveBorderColor, Source={x:Reference this}}" />
         </Grid>

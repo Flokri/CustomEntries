@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentView
+<customentries:FloatingLabelBase
     x:Class="CustomEntries.ConfirmFloatingLabelEntry"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -16,28 +16,15 @@
                 BackgroundColor="{Binding ViewBackgroundColor, Source={x:Reference this}}"
                 CornerRadius="{Binding CornerRadius, Source={x:Reference this}}">
                 <Grid HorizontalOptions="FillAndExpand">
-                    <customentries:BorderlessEntry
-                        x:Name="BorderlessEntry"
-                        Margin="10,0,0,-4"
-                        Completed="HandleCompleted"
-                        Focused="HandleFocused"
+                    <customentries:FloatingLabelEntry
+                        x:Name="floatingLabelEntry"
                         IsPassword="{Binding IsPassword, Source={x:Reference this}}"
                         Keyboard="{Binding Keyboard, Source={x:Reference this}}"
+                        Placeholder="{Binding Placeholder, Source={x:Reference this}}"
+                        PlaceholderColor="{Binding PlaceholderColor, Source={x:Reference this}}"
                         Text="{Binding Text, Source={x:Reference this}}"
                         TextColor="{Binding TextColor, Source={x:Reference this}}"
-                        Unfocused="HandleUnfocused"
-                        VerticalOptions="End"
-                        VerticalTextAlignment="End" />
-                    <Label
-                        x:Name="PlaceholderLabel"
-                        Margin="12,0"
-                        Text="{Binding Placeholder, Source={x:Reference this}}"
-                        TextColor="{Binding DefaultTextColor, Source={x:Reference this}}"
-                        VerticalOptions="Center">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="HandleTapped" />
-                        </Label.GestureRecognizers>
-                    </Label>
+                        TitleColor="{Binding TitleColor, Source={x:Reference this}}" />
                     <Button
                         x:Name="Confirm"
                         Margin="0,0,-1,0"
@@ -54,4 +41,4 @@
             </Frame>
         </Grid>
     </ContentView.Content>
-</ContentView>
+</customentries:FloatingLabelBase>

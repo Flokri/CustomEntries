@@ -7,8 +7,9 @@ namespace CustomEntries
         #region bindable properties
         public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(BorderlessFloatingLabelEntry), string.Empty);
         public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(BorderlessFloatingLabelEntry), string.Empty);
-        public static readonly BindableProperty DefaultTextColorProperty = BindableProperty.Create(nameof(DefaultTextColor), typeof(Color), typeof(BorderlessFloatingLabelEntry), Color.Gray);
-        public static readonly BindableProperty TitleColorProperty = BindableProperty.Create(nameof(TitleColor), typeof(Color), typeof(BorderlessFloatingLabelEntry), Color.Gray);
+        public static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(BorderlessFloatingLabelEntry), Color.Gray);
+        public static readonly BindableProperty PlaceholderColorProperty = BindableProperty.Create(nameof(PlaceholderColor), typeof(Color), typeof(BorderlessFloatingLabelEntry), Color.Gray);
+        public static readonly BindableProperty TitleColorProperty = BindableProperty.Create(nameof(TitleColor), typeof(Color), typeof(BorderlessFloatingLabelEntry), Color.Transparent);
         public static readonly BindableProperty AnimatedProperty = BindableProperty.Create(nameof(Animated), typeof(bool), typeof(BorderlessFloatingLabelEntry), true);
         public static readonly BindableProperty KeyboardProperty = BindableProperty.Create(nameof(Keyboard), typeof(Keyboard), typeof(BorderlessFloatingLabelEntry), Keyboard.Default);
         public static readonly BindableProperty IsPasswordProperty = BindableProperty.Create(nameof(IsPassword), typeof(bool), typeof(BorderlessFloatingLabelEntry), false);
@@ -36,10 +37,10 @@ namespace CustomEntries
         /// <summary>
         /// The default color of the entry text color
         /// </summary>
-        public Color DefaultTextColor
+        public Color TextColor
         {
-            get => (Color)GetValue(DefaultTextColorProperty);
-            set => SetValue(DefaultTextColorProperty, value);
+            get => (Color)GetValue(TextColorProperty);
+            set => SetValue(TextColorProperty, value);
         }
 
         /// <summary>
@@ -47,7 +48,10 @@ namespace CustomEntries
         /// </summary>
         public Color TitleColor
         {
-            get => (Color)GetValue(TitleColorProperty);
+            get
+            {
+                return TitleColor.Equals(Color.Transparent) ? (Color)GetValue(PlaceholderColorProperty) : (Color)GetValue(TitleColorProperty);
+            }
             set => SetValue(TitleColorProperty, value);
         }
 
@@ -76,6 +80,12 @@ namespace CustomEntries
         {
             get => (bool)GetValue(IsPasswordProperty);
             set => SetValue(IsPasswordProperty, value);
+        }
+
+        public Color PlaceholderColor
+        {
+            get => (Color)GetValue(PlaceholderColorProperty);
+            set => SetValue(PlaceholderColorProperty, value);
         }
         #endregion
     }

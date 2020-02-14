@@ -9,7 +9,19 @@
     x:Name="this"
     mc:Ignorable="d">
     <ContentView.Content>
-        <Grid x:Name="Grid" RowSpacing="-7">
+        <Grid x:Name="Grid">
+            <Grid.RowSpacing>
+                <OnPlatform x:TypeArguments="x:Double">
+                    <On Platform="iOS" Value="0" />
+                    <On Platform="Android" Value="-7" />
+                </OnPlatform>
+            </Grid.RowSpacing>
+            <Grid.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="iOS" Value="0,10,0,0" />
+                    <On Platform="Android" Value="0" />
+                </OnPlatform>
+            </Grid.Margin>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="1" />
@@ -21,11 +33,12 @@
                 IsPassword="{Binding IsPassword, Source={x:Reference this}}"
                 Keyboard="{Binding Keyboard, Source={x:Reference this}}"
                 Text="{Binding Text, Source={x:Reference this}}"
+                TextColor="{Binding TextColor, Source={x:Reference this}}"
                 Unfocused="HandleUnfocused" />
             <Label
                 x:Name="PlaceholderLabel"
                 Text="{Binding Placeholder, Source={x:Reference this}}"
-                TextColor="{Binding DefaultTextColor, Source={x:Reference this}}"
+                TextColor="{Binding PlaceholderColor, Source={x:Reference this}}"
                 VerticalOptions="Center">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Tapped="HandleTapped" />

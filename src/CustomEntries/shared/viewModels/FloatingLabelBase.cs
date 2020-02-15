@@ -48,10 +48,7 @@ namespace CustomEntries
         /// </summary>
         public Color TitleColor
         {
-            get
-            {
-                return TitleColor.Equals(Color.Transparent) ? (Color)GetValue(PlaceholderColorProperty) : (Color)GetValue(TitleColorProperty);
-            }
+            get => (Color)GetValue(TitleColorProperty);
             set => SetValue(TitleColorProperty, value);
         }
 

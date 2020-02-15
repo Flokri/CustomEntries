@@ -16,6 +16,7 @@ namespace CustomEntries
         private SKPath _path;
 
         Stopwatch stopwatch = new Stopwatch();
+        bool pageIsActive;
         #endregion
 
         public ValidationWaveEntry()
@@ -31,6 +32,7 @@ namespace CustomEntries
                 StrokeWidth = 5
             };
 
+            pageIsActive = true;
             AnimationLoop();
         }
 
@@ -61,21 +63,22 @@ namespace CustomEntries
                 x: (float)viewBounds.X,
                 y: (float)viewBounds.Height - strokeWidth);
 
-            path.LineTo(800, path.LastPoint.Y);
+            path.LineTo(200, path.LastPoint.Y);
 
-            path.QuadTo(new SKPoint(path.LastPoint.X + 30, path.LastPoint.Y - 30), new SKPoint(path.LastPoint.X + 60, path.LastPoint.Y));
+            path.QuadTo(new SKPoint(path.LastPoint.X + 30, path.LastPoint.Y - plus), new SKPoint(path.LastPoint.X + 60, path.LastPoint.Y));
 
             path.LineTo(path.LastPoint.X + 100, path.LastPoint.Y);
 
             return path;
         }
 
+
         async Task AnimationLoop()
         {
             stopwatch.Start();
 
             float test = 0.1f;
-            while (true)
+            while (pageIsActive)
             {
                 SetPath(test);
                 SkCanvasView.InvalidateSurface();

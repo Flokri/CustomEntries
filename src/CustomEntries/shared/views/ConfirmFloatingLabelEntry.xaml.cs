@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace CustomEntries
 {
@@ -16,9 +12,11 @@ namespace CustomEntries
         #endregion
 
         #region bindable properties
-        public readonly BindableProperty CornerRadiusProperty = BindableProperty.Create(nameof(CornerRadius), typeof(int), typeof(BorderlessFloatingLabelEntry), 0);
-        public readonly BindableProperty ViewBackgroundColorProperty = BindableProperty.Create(nameof(ViewBackgroundColor), typeof(Color), typeof(BorderlessFloatingLabelEntry), Color.Gray);
-        public readonly BindableProperty ButtonBackgroundColorProperty = BindableProperty.Create(nameof(ButtonBackgroundColor), typeof(Color), typeof(BorderlessFloatingLabelEntry), Color.LightGray);
+        public readonly BindableProperty ButtonTextProperty = BindableProperty.Create(nameof(ButtonText), typeof(string), typeof(MaterialFloatingLabelEntry), "");
+        public readonly BindableProperty ConfirmTextProperty = BindableProperty.Create(nameof(ConfirmText), typeof(string), typeof(MaterialFloatingLabelEntry), "");
+        public readonly BindableProperty CornerRadiusProperty = BindableProperty.Create(nameof(CornerRadius), typeof(int), typeof(MaterialFloatingLabelEntry), 0);
+        public readonly BindableProperty ViewBackgroundColorProperty = BindableProperty.Create(nameof(ViewBackgroundColor), typeof(Color), typeof(MaterialFloatingLabelEntry), Color.Gray);
+        public readonly BindableProperty ButtonBackgroundColorProperty = BindableProperty.Create(nameof(ButtonBackgroundColor), typeof(Color), typeof(MaterialFloatingLabelEntry), Color.LightGray);
         public readonly BindableProperty IsValidProperty = BindableProperty.Create(nameof(IsValid), typeof(bool), typeof(ConfirmFloatingLabelEntry), false, propertyChanged: (bindable, oldVal, newVal) =>
         {
             var confirmEntry = (ConfirmFloatingLabelEntry)bindable;
@@ -31,15 +29,20 @@ namespace CustomEntries
         {
             InitializeComponent();
 
-            floatingLabelEntry.PlaceholderToTitleAsync += (sender, e) => Confirm.OpacityTo(0, 1, (o) => Confirm.Opacity = o, 300);
-            floatingLabelEntry.TitleToPlaceholderAsync += (sender, e) => Confirm.OpacityTo(1, 0, (o) => Confirm.Opacity = o, 300);
+            floatingLabelEntry.PlaceholderToTitleAsync += (sender, e) => PlaceholderToTitle();
+
+            floatingLabelEntry.TitleToPlaceholderAsync += (sender, e) => TitleToPlaceholder();
 
             floatingLabelEntry.TextChangedHandlerAsync += async (sender, e) => await (TextChangedHandlerAsync?.InvokeAsync(sender, e) ?? Task.CompletedTask);
             UpdateValidation();
+
         }
         #endregion
 
         #region privates
+        /// <summary>
+        /// set the button style to the correct validation status
+        /// </summary>
         private void UpdateValidation()
         {
             if (IsValid)
@@ -54,94 +57,120 @@ namespace CustomEntries
             }
         }
 
-        //async Task PlaceholderToTitle()
-        //{
-        //    Confirm.HeightRequest = Frame.Height;
-        //    if (Animated)
-        //    {
-        //        if (!IsValid)
-        //        {
-        //            Confirm.BackgroundColor = ButtonBackgroundColor.WithLuminosity(0.45);
-        //            Confirm.TextColor = ViewBackgroundColor;
-        //        }
-        //        var buttonWidth = CalculateBounds.GetTextWidth(Confirm.Text, Convert.ToSingle(Confirm.FontSize));
-        //        Confirm.WidthRequest = CalculateBounds.GetTextWidth(Confirm.Text, Convert.ToSingle(Confirm.FontSize));
-        //        await Task.WhenAll(
-        //            PlaceholderLabel.TranslateTo(0, (Frame.Height * (-1) + PlaceholderLabel.Height) + CalculateBounds.GetTextHeight(PlaceholderLabel.Text, TITLE_FONT_SIZE) + 7, 200),
-        //            PlaceholderLabel.SizeTo(PlaceholderLabel.FontSize, TITLE_FONT_SIZE, (t) => PlaceholderLabel.FontSize = t, 200, Easing.BounceIn),
-        //            PlaceholderLabel.ColorTo(DefaultTextColor, ActiveTextColor, (c) => PlaceholderLabel.TextColor = c, 200),
-        //            Confirm.OpacityTo(0, 1, (o) => Confirm.Opacity = o, 300));
+        /// <summary>
+        /// change the button style when the user starts to enter a text
+        /// </summary>
+        /// <returns></returns>
+        async Task PlaceholderToTitle()
+        {
+            Confirm.HeightRequest = Frame.Height;
 
-        //        Confirm.HeightRequest = Frame.Height;
-        //        Confirm.WidthRequest = buttonWidth;
-        //    }
-        //    else
-        //    {
-        //        PlaceholderLabel.TranslationX = 0;
-        //        PlaceholderLabel.TranslationY = BorderlessEntry.Y - PlaceholderLabel.Height;
-        //        PlaceholderLabel.FontSize = TITLE_FONT_SIZE;
-        //    }
-        //}
+            if (!IsValid)
+            {
+                Confirm.BackgroundColor = ButtonBackgroundColor.WithLuminosity(0.45);
+                Confirm.TextColor = ViewBackgroundColor;
+            }
 
-        //async Task TitleToPlaceholder()
-        //{
-        //    if (Animated)
-        //    {
-        //        await Task.WhenAll(
-        //            PlaceholderLabel.TranslateTo(10, 0, 100),
-        //            PlaceholderLabel.SizeTo(PlaceholderLabel.FontSize, PLACEHOLDER_FONT_SIZE, (t) => PlaceholderLabel.FontSize = t, 100),
-        //            PlaceholderLabel.ColorTo(ActiveTextColor, DefaultTextColor, (c) => PlaceholderLabel.TextColor = c, 100),
-        //            Confirm.OpacityTo(1, 0, (o) => Confirm.Opacity = o, 300));
+            var buttonWidth = CalculateBounds.GetTextWidth(Confirm.Text, Convert.ToSingle(Confirm.FontSize));
+#if __IOS__
+#endif
 
-        //        Confirm.WidthRequest = 0;
-        //    }
-        //    else
-        //    {
-        //        PlaceholderLabel.TranslationX = 10;
-        //        PlaceholderLabel.TranslationY = 0;
-        //        PlaceholderLabel.FontSize = PLACEHOLDER_FONT_SIZE;
-        //    }
-        //}
+#if __ANDROID__
+            buttonWidth *= DeviceDisplay.MainDisplayInfo.Density;
+#endif
+            Confirm.WidthRequest = buttonWidth;
 
-        async Task ResizeConfirm()
+            await Task.WhenAll(Confirm.OpacityTo(0, 1, (o) => Confirm.Opacity = o, 300),
+                         Task.Run(() => floatingLabelEntry.VerticalOptions = LayoutOptions.End));
+
+            Confirm.HeightRequest = Frame.Height;
+            Confirm.WidthRequest = buttonWidth;
+        }
+
+        /// <summary>
+        /// change the button style when the title transform back to placeholder
+        /// </summary>
+        /// <returns></returns>
+        async Task TitleToPlaceholder()
+        {
+            await Task.WhenAll(Confirm.OpacityTo(1, 0, (o) => Confirm.Opacity = o, 300),
+                         Task.Run(() => floatingLabelEntry.VerticalOptions = LayoutOptions.Center));
+            Confirm.WidthRequest = 0;
+        }
+
+        /// <summary>
+        /// set the button style when the user taps the confirm button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Confirm_Clicked(object sender, EventArgs e)
         {
             if (IsValid)
             {
-                Confirm.ImageSource = ImageSource.FromResource("CustomEntries.shared.resources.refresh_light.png");
-
-                Confirm.Text = "Thanks! Check your email.";
+                Confirm.Text = ConfirmText;
                 Confirm.HeightRequest = Frame.Height;
-                await Task.WhenAll(
+                Task.WhenAll(
                     Confirm.LayoutTo(new Rectangle(Frame.X - 1, Frame.Y, Frame.Width + 1, Frame.Height), 700, Easing.SinOut),
                     Confirm.ColorTo(Color.FromRgba(Confirm.TextColor.R, Confirm.TextColor.G, Confirm.TextColor.B, 0), Confirm.TextColor, (c) => Confirm.TextColor = c, 700, Easing.Linear));
                 Confirm.WidthRequest = Frame.Width + 1;
             }
         }
+
         #endregion
 
         #region properties
+        /// <summary>
+        /// the background color of the view
+        /// </summary>
         public Color ViewBackgroundColor
         {
             get => (Color)GetValue(ViewBackgroundColorProperty);
             set => SetValue(ViewBackgroundColorProperty, value);
         }
 
+        /// <summary>
+        /// the background color of the confirm button
+        /// </summary>
         public Color ButtonBackgroundColor
         {
             get => (Color)GetValue(ButtonBackgroundColorProperty);
             set => SetValue(ButtonBackgroundColorProperty, value);
         }
 
+        /// <summary>
+        /// specifiy if the current entered text is valid (use a validation behaviour)
+        /// </summary>
         public bool IsValid
         {
             get => (bool)GetValue(IsValidProperty);
             set => SetValue(IsValidProperty, value);
         }
 
+        /// <summary>
+        /// the corner radius of the view
+        /// </summary>
         public int CornerRadius
         {
             get => (int)GetValue(CornerRadiusProperty);
             set => SetValue(CornerRadiusProperty, value);
+        }
+
+        /// <summary>
+        /// the text of the confirm button
+        /// </summary>
+        public string ButtonText
+        {
+            get => (string)GetValue(ButtonTextProperty);
+            set => SetValue(ButtonTextProperty, value);
+        }
+
+        /// <summary>
+        /// the final string of the confirm button
+        /// </summary>
+        public string ConfirmText
+        {
+            get => (string)GetValue(ConfirmTextProperty);
+            set => SetValue(ConfirmTextProperty, value);
         }
         #endregion
     }

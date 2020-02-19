@@ -10,7 +10,6 @@
 
     <Grid>
         <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-            <customentries:ValidationWaveEntry Margin="30,10" WidthRequest="300" />
             <customentries:FloatingLabelEntry
                 Margin="30,0"
                 Placeholder="Floating Label"
@@ -24,7 +23,7 @@
                 StartColor="Violet"
                 TitleColor="Gray"
                 WidthRequest="300" />
-            <customentries:BorderlessFloatingLabelEntry
+            <customentries:MaterialFloatingLabelEntry
                 ActiveBorderColor="LightCoral"
                 DefaultBorderColor="LightGray"
                 HorizontalOptions="CenterAndExpand"
@@ -34,7 +33,7 @@
                 VerticalOptions="CenterAndExpand"
                 WidthRequest="150" />
 
-            <customentries:BorderlessFloatingLabelEntry
+            <customentries:MaterialFloatingLabelEntry
                 ActiveBorderColor="LightGreen"
                 DefaultBorderColor="LightGray"
                 HorizontalOptions="CenterAndExpand"
@@ -47,11 +46,14 @@
             <customentries:ConfirmFloatingLabelEntry
                 Margin="30,5"
                 ButtonBackgroundColor="#5c94cd"
+                ButtonText="OK"
+                ConfirmText="Thank's for registration!"
                 CornerRadius="5"
                 Keyboard="Email"
                 Placeholder="Email Address"
                 PlaceholderColor="#5a97d6"
                 TextColor="White"
+                TitleColor="#5a97d6"
                 ViewBackgroundColor="#044f9e">
                 <customentries:ConfirmFloatingLabelEntry.Behaviors>
                     <customentries:EmailValidationBehavior />

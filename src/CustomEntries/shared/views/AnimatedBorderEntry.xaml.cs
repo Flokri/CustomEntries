@@ -1,7 +1,5 @@
 ﻿using System.Threading.Tasks;
-
 using Xamarin.Forms;
-
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
 
@@ -11,8 +9,8 @@ namespace CustomEntries
     {
         #region instances
         private SKPath _borderPath;
-        private StrokeDash _strokeDashStart;
-        private StrokeDash _strokeDashEnd;
+        private DashedStroke _strokeDashStart;
+        private DashedStroke _strokeDashEnd;
         private SKPaint _paint;
 
         private const uint ANIMATION_DURATION = 400;
@@ -39,19 +37,15 @@ namespace CustomEntries
             };
 
             // set the stroke width for the different platforms
-            switch (Device.RuntimePlatform)
-            {
-                case Device.iOS:
-                    _paint.StrokeWidth = 3;
-                    break;
-                case Device.Android:
-                    _paint.StrokeWidth = 5;
-                    break;
-                default:
-                    break;
-            }
+#if __IOS__
+            _paint.StrokeWidth = 3;
+#endif
+#if __ANDROID__
+            _paint.StrokeWidth = 5;
+#endif
         }
 
+        #region privates
         /// <summary>
         /// Get called when drawing is required
         /// </summary>
@@ -77,20 +71,20 @@ namespace CustomEntries
         /// <returns></returns>
         private async Task PlaceholderToTitleAsync()
         {
-            _strokeDashStart = new StrokeDash(
+            _strokeDashStart = new DashedStroke(
                 intervals: new float[] { 0, new SKPathMeasure(_borderPath).Length },
                 phase: -0);
 
-            _strokeDashEnd = new StrokeDash(
+            _strokeDashEnd = new DashedStroke(
                 intervals: new float[] { new SKPathMeasure(_borderPath).Length, new SKPathMeasure(_borderPath).Length },
                 phase: -0);
 
-            var anim = new StrokeDashAnimation(
+            var anim = new DashedStrokeAnimation(
                 from: _strokeDashStart,
                 to: _strokeDashEnd,
                 duration: ANIMATION_DURATION);
 
-            await anim.Start((strokeDashToDraw) => RequestDraw(SkCanvasView, strokeDashToDraw));
+            await anim.Start((strokeDashToDraw) => SkCanvasView.InvalidateSurface());
         }
 
 
@@ -100,22 +94,27 @@ namespace CustomEntries
         /// <returns></returns>
         private async Task TitleToPlaceholderAsync()
         {
-            _strokeDashEnd = new StrokeDash(
+            _strokeDashEnd = new DashedStroke(
                 intervals: new float[] { 0, new SKPathMeasure(_borderPath).Length },
                 phase: -0);
 
-            _strokeDashStart = new StrokeDash(
+            _strokeDashStart = new DashedStroke(
                 intervals: new float[] { new SKPathMeasure(_borderPath).Length, new SKPathMeasure(_borderPath).Length },
                 phase: -0);
 
-            var anim = new StrokeDashAnimation(
+            var anim = new DashedStrokeAnimation(
                 from: _strokeDashStart,
                 to: _strokeDashEnd,
                 duration: ANIMATION_DURATION);
 
-            await anim.Start((strokeDashToDraw) => RequestDraw(SkCanvasView, strokeDashToDraw));
+            await anim.Start((strokeDashToDraw) => SkCanvasView.InvalidateSurface());
         }
 
+        /// <summary>
+        /// generate the path for the border
+        /// </summary>
+        /// <param name="paint">the paint object for the path</param>
+        /// <returns>a skpath representing the border of the floating label entry</returns>
         private SKPath GeneratePath(SKPaint paint)
         {
             var path = new SKPath();
@@ -164,11 +163,11 @@ namespace CustomEntries
                 forceMoveTo: false);
 
             _borderPath = path;
-            _strokeDashStart = new StrokeDash(
+            _strokeDashStart = new DashedStroke(
                 intervals: new float[] { 0, new SKPathMeasure(_borderPath).Length },
                 phase: -0);
 
-            _strokeDashEnd = new StrokeDash(
+            _strokeDashEnd = new DashedStroke(
                 intervals: new float[] { new SKPathMeasure(_borderPath).Length, new SKPathMeasure(_borderPath).Length },
                 phase: -0);
 
@@ -200,30 +199,30 @@ namespace CustomEntries
                         mode: SKShaderTileMode.Clamp);
             }
         }
-
-        /// <summary>
-        /// Invalidate the canvas (force to redraw)
-        /// </summary>
-        /// <param name="skCanvasView"></param>
-        /// <param name="strokeDashToDraw"></param>
-        void RequestDraw(SKCanvasView skCanvasView, StrokeDash strokeDashToDraw)
-        {
-            skCanvasView.InvalidateSurface();
-        }
+        #endregion
 
         #region properties
+        /// <summary>
+        /// the start color of the gradient border
+        /// </summary>
         public Color StartColor
         {
             get => (Color)GetValue(StartColorProperty);
             set => SetValue(StartColorProperty, value);
         }
 
+        /// <summary>
+        /// the end color of the gradient border
+        /// </summary>
         public Color EndColor
         {
             get => (Color)GetValue(EndColorProperty);
             set => SetValue(EndColorProperty, value);
         }
 
+        /// <summary>
+        /// specifiy if the border should have a gradient color
+        /// </summary>
         public bool GradientColor
         {
             get => (bool)GetValue(GradientColorProperty);

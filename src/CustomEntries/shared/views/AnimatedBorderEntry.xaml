@@ -22,7 +22,6 @@
                 IsPassword="{Binding IsPassword, Source={x:Reference this}}"
                 Keyboard="{Binding Keyboard, Source={x:Reference this}}"
                 Placeholder="{Binding Placeholder, Source={x:Reference this}}"
-                
                 TextColor="{Binding DefaultTextColor, Source={x:Reference this}}"
                 TitleColor="{Binding TitleColor, Source={x:Reference this}}" />
         </Grid>

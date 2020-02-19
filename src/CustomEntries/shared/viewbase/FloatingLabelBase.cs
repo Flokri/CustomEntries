@@ -2,17 +2,20 @@
 
 namespace CustomEntries
 {
+    /// <summary>
+    /// a content view base for views containing the floating label
+    /// </summary>
     public partial class FloatingLabelBase : ContentView
     {
         #region bindable properties
-        public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(BorderlessFloatingLabelEntry), string.Empty);
-        public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(BorderlessFloatingLabelEntry), string.Empty);
-        public static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(BorderlessFloatingLabelEntry), Color.Gray);
-        public static readonly BindableProperty PlaceholderColorProperty = BindableProperty.Create(nameof(PlaceholderColor), typeof(Color), typeof(BorderlessFloatingLabelEntry), Color.Gray);
-        public static readonly BindableProperty TitleColorProperty = BindableProperty.Create(nameof(TitleColor), typeof(Color), typeof(BorderlessFloatingLabelEntry), Color.Transparent);
-        public static readonly BindableProperty AnimatedProperty = BindableProperty.Create(nameof(Animated), typeof(bool), typeof(BorderlessFloatingLabelEntry), true);
-        public static readonly BindableProperty KeyboardProperty = BindableProperty.Create(nameof(Keyboard), typeof(Keyboard), typeof(BorderlessFloatingLabelEntry), Keyboard.Default);
-        public static readonly BindableProperty IsPasswordProperty = BindableProperty.Create(nameof(IsPassword), typeof(bool), typeof(BorderlessFloatingLabelEntry), false);
+        public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(MaterialFloatingLabelEntry), string.Empty);
+        public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(MaterialFloatingLabelEntry), string.Empty);
+        public static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(MaterialFloatingLabelEntry), Color.Gray);
+        public static readonly BindableProperty PlaceholderColorProperty = BindableProperty.Create(nameof(PlaceholderColor), typeof(Color), typeof(MaterialFloatingLabelEntry), Color.Gray);
+        public static readonly BindableProperty TitleColorProperty = BindableProperty.Create(nameof(TitleColor), typeof(Color), typeof(MaterialFloatingLabelEntry), Color.Gray);
+        public static readonly BindableProperty AnimatedProperty = BindableProperty.Create(nameof(Animated), typeof(bool), typeof(MaterialFloatingLabelEntry), true);
+        public static readonly BindableProperty KeyboardProperty = BindableProperty.Create(nameof(Keyboard), typeof(Keyboard), typeof(MaterialFloatingLabelEntry), Keyboard.Default);
+        public static readonly BindableProperty IsPasswordProperty = BindableProperty.Create(nameof(IsPassword), typeof(bool), typeof(MaterialFloatingLabelEntry), false);
         #endregion
 
         #region properties
@@ -79,6 +82,9 @@ namespace CustomEntries
             set => SetValue(IsPasswordProperty, value);
         }
 
+        /// <summary>
+        /// The color of the placeholder
+        /// </summary>
         public Color PlaceholderColor
         {
             get => (Color)GetValue(PlaceholderColorProperty);

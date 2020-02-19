@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace CustomEntries
 {
+    /// <summary>
+    /// a behaviour to validata a entered email string
+    /// </summary>
     public class EmailValidationBehavior : Behavior<ConfirmFloatingLabelEntry>
     {
         ConfirmFloatingLabelEntry _currentView;
@@ -38,6 +39,11 @@ namespace CustomEntries
             return Task.CompletedTask;
         }
 
+        /// <summary>
+        /// checks if the enterd email is valid
+        /// </summary>
+        /// <param name="email">the string contains the email address</param>
+        /// <returns>if the entered email is valid</returns>
         private bool IsValidEmail(string email)
         {
             try

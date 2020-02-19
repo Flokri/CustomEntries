@@ -61,6 +61,7 @@
 
     <PackageReference Include="SkiaSharp" Version="1.68.2-preview.29" />
     <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.2-preview.29" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.4.0-pre2" />
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.187-pre2" />
     <PackageReference Include="Xamarin.Forms.DebugRainbows" Version="1.1.4" />
   </ItemGroup>
@@ -79,6 +80,12 @@
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('uwp')) ">
     <Compile Include="uap\**\*.uwp.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="shared\views\MaterialFloatingLabelEntry.xaml.cs">
+      <DependentUpon>MaterialFloatingLabelEntry.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <!-- The item groups for the other framworks-->
@@ -111,5 +118,4 @@
     <PackageReference Include="Tizen.NET" Version="4.0.0" />
   </ItemGroup>
   -->
-
 </Project>

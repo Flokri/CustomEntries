@@ -24,16 +24,23 @@
                         PlaceholderColor="{Binding PlaceholderColor, Source={x:Reference this}}"
                         Text="{Binding Text, Source={x:Reference this}}"
                         TextColor="{Binding TextColor, Source={x:Reference this}}"
-                        TitleColor="{Binding TitleColor, Source={x:Reference this}}" />
+                        TitleColor="{Binding TitleColor, Source={x:Reference this}}"
+                        VerticalOptions="Center">
+                        <customentries:FloatingLabelEntry.Margin>
+                            <OnPlatform x:TypeArguments="Thickness">
+                                <On Platform="Android" Value="5,0" />
+                            </OnPlatform>
+                        </customentries:FloatingLabelEntry.Margin>
+                    </customentries:FloatingLabelEntry>
                     <Button
                         x:Name="Confirm"
                         Margin="0,0,-1,0"
                         BackgroundColor="{Binding ButtonBackgroundColor, Source={x:Reference this}}"
-                        Clicked="HandleClicked"
+                        Clicked="Confirm_Clicked"
                         CornerRadius="{Binding CornerRadius, Source={x:Reference this}}"
                         HorizontalOptions="End"
                         ImageSource=""
-                        Text="OK"
+                        Text="{Binding ButtonText, Source={x:Reference this}}"
                         TextColor="{Binding DefaultTextColor, Source={x:Reference this}}"
                         VerticalOptions="FillAndExpand"
                         WidthRequest="0" />

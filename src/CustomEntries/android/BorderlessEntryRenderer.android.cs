@@ -6,6 +6,9 @@ using Xamarin.Forms.Platform.Android;
 [assembly: ExportRenderer(typeof(BorderlessEntry), typeof(BorderlessEntryRenderer))]
 namespace CustomEntries
 {
+    /// <summary>
+    /// Custom renderer for the borderless entry
+    /// </summary>
     public class BorderlessEntryRenderer : EntryRenderer
     {
         public BorderlessEntryRenderer(Context context) : base(context) { }

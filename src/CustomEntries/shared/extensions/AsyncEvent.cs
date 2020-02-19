@@ -5,6 +5,11 @@ using System.Threading.Tasks;
 
 namespace CustomEntries
 {
+    /// <summary>
+    /// async events
+    /// thanks to tzachs (StackOverflow)
+    /// </summary>
+    /// <typeparam name="TEventArgs"></typeparam>
     public class AsyncEvent<TEventArgs> where TEventArgs : EventArgs
     {
         private readonly List<Func<object, TEventArgs, Task>> invocationList;

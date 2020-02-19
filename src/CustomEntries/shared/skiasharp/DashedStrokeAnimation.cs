@@ -5,43 +5,51 @@ using Xamarin.Forms;
 
 namespace CustomEntries
 {
-    class StrokeDashAnimation
+    /// <summary>
+    /// create a aimation for a dashed stroke
+    /// </summary>
+    class DashedStrokeAnimation
     {
-        StrokeDash _currStrokeDash;
+        DashedStroke _strokeDash;
 
-        public StrokeDash From { get; }
-        public StrokeDash To { get; }
+        public DashedStroke From { get; }
+        public DashedStroke To { get; }
         public uint Duration { get; }
         public Easing Easing { get; }
 
-        public StrokeDashAnimation(StrokeDash from, StrokeDash to, uint duration)
+        public DashedStrokeAnimation(DashedStroke from, DashedStroke to, uint duration)
         {
             From = from;
             To = to;
             Duration = duration;
         }
 
-        public Task<bool> Start(Action<StrokeDash> onValueCallback)
+        /// <summary>
+        /// animate a dashed storke animation form the "from" dashed stroke to the "to" dashes stroke
+        /// </summary>
+        /// <param name="onValueCallback">the callback to set the changed dashed stroke</param>
+        /// <returns>a task contains the animation</returns>
+        public Task<bool> Start(Action<DashedStroke> onValueCallback)
         {
-            _currStrokeDash = From;
+            _strokeDash = From;
 
             var taskCompletionSource = new TaskCompletionSource<bool>();
-            var anim = new Animation(_ => onValueCallback(_currStrokeDash));
+            var anim = new Animation(_ => onValueCallback(_strokeDash));
 
             anim.Add(0, 1, new Animation(
-                callback: v => _currStrokeDash.Phase = (float)v,
+                callback: v => _strokeDash.Phase = (float)v,
                 start: From.Phase,
                 end: To.Phase,
                 easing: Easing));
 
             anim.Add(0, 1, new Animation(
-                callback: v => _currStrokeDash.Intervals[0] = (float)v,
+                callback: v => _strokeDash.Intervals[0] = (float)v,
                 start: From.Intervals[0],
                 end: To.Intervals[0],
                 easing: Easing));
 
             anim.Add(0, 1, new Animation(
-                callback: v => _currStrokeDash.Intervals[1] = (float)v,
+                callback: v => _strokeDash.Intervals[1] = (float)v,
                 start: From.Intervals[1],
                 end: To.Intervals[1],
                 easing: Easing));

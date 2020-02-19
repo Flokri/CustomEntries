@@ -8,7 +8,7 @@ namespace CustomEntries
     public partial class FloatingLabelBase : ContentView
     {
         #region bindable properties
-        public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(MaterialFloatingLabelEntry), string.Empty);
+        public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(MaterialFloatingLabelEntry), string.Empty, BindingMode.TwoWay);
         public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(MaterialFloatingLabelEntry), string.Empty);
         public static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(MaterialFloatingLabelEntry), Color.Gray);
         public static readonly BindableProperty PlaceholderColorProperty = BindableProperty.Create(nameof(PlaceholderColor), typeof(Color), typeof(MaterialFloatingLabelEntry), Color.Gray);
